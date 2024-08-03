@@ -21,7 +21,7 @@ const router = createRouter({
         { path: '/reset', component: Reset },
     ]
 })
-
+Vue.prototype.$pb = process.env.BASE_URL
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(router)

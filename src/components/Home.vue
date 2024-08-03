@@ -3,7 +3,7 @@
       <el-container>
         <el-header style="display: flex; justify-content: space-between; align-items: center; padding-top: 30px;">
             <div style="display: flex; align-items: center;">
-                <el-image style="width: 80px; height: 80px;" src="../../public/pillow.png" />
+                <el-image style="width: 80px; height: 80px;" src="`${$pb}assets/pillow.png`" />
                 <el-text style="
                     color: #92b4df;
                     font-size: 40px; 

@@ -7,7 +7,7 @@
             <div class="container">
                 <div style="width: 350px;padding: 50px 30px;background-color: white;border-radius: 5px;">
                     <div style="display: flex;align-items: center;font-size: 20px;margin-bottom: 20px;">
-                        <el-image style="width: 40px;" src="../../public/pillow.png" />
+                        <el-image style="width: 40px;" src="`${$pb}assets/pillow.png`" />
                         <el-text
                             style="color: #92b4df;font-size: 25px; font-weight:700;margin-left: 10px;">PillowDrive</el-text>
                     </div>
@@ -57,6 +57,7 @@
 import { reactive } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
+import homeIcon from '@/assets/pillow.png'
 
 const sms = reactive({
     disabled: false,
