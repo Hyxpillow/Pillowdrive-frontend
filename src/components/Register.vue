@@ -55,6 +55,10 @@ import { reactive } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 
+const GET_CODE_URL = 'http://localhost:25567/user/get_code'
+const REGISTER_URL = 'http://localhost:25567/user/register'
+
+
 const sms = reactive({
     disabled: false,
     total: 60,
@@ -81,7 +85,7 @@ const form = reactive({
 })
 
 const getCode = () => {
-    fetch('http://127.0.0.1:8080/user/get_code', {
+    fetch(GET_CODE_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: form.email})
@@ -99,7 +103,7 @@ const getCode = () => {
 }
 
 const onSubmit = () => {
-    fetch('http://127.0.0.1:8080/user/register', {
+    fetch(REGISTER_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

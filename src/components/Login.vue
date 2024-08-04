@@ -47,13 +47,16 @@ import { reactive } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 
+
+const LOGIN_URL = 'http://localhost:25567/user/login'
+
+
 const form = reactive({
     email: '',
     password: ''
 })
-
 const onSubmit = () => {
-    fetch('http://localhost:8080/user/login', {
+    fetch(LOGIN_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         credentials: 'include',

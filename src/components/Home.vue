@@ -69,7 +69,14 @@
 <script lang="ts" setup>
     import { Document, Folder } from '@element-plus/icons-vue'
     import { ref, onMounted, reactive } from 'vue'
-    import { ElMessageBox,ElMessage } from 'element-plus'
+    import { ElMessageBox } from 'element-plus'
+
+    const UPLOAD_URL = 'http://localhost:25567/file/upload'
+    const DOWNLOAD_URL = 'http://localhost:25567/file/download'
+    const DELETE_URL = 'http://localhost:25567/file/delete'
+    const RENAME_URL = 'http://localhost:25567/file/rename'
+    const CREATE_URL = 'http://localhost:25567/file/create'
+    const LIST_URL = 'http://localhost:25567/file/list'
 
     var reactiveComponent = reactive({
         allFiles: [],
@@ -80,15 +87,6 @@
     const getCurrentPath = () => {return reactiveComponent.allPaths.length ? reactiveComponent.allPaths.join('/') + '/' : ''}
     const fileTable = ref(null)
 
-    var data = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: null
-    }
-
     const fileInput = ref(null)
     const uploadFiles = () => {
         fileInput.value.click()
@@ -98,7 +96,7 @@
         formData.append('file', fileInput.value.files[0]);
         formData.append('path', getCurrentPath()); // 添加路径字段
 
-        fetch('http://localhost:8080/file/upload', {
+        fetch(UPLOAD_URL, {
           method: 'POST',
           credentials: 'include',
           body: formData,
@@ -124,10 +122,16 @@
     const downloadFiles = () => {
         const prefixPath = getCurrentPath()
         const pathList = fileTable.value.getSelectionRows().map(item => prefixPath + item.filename)
-        data.body = JSON.stringify({
-            pathList: pathList
+        fetch(DOWNLOAD_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                pathList: pathList
+            })
         })
-        fetch('http://localhost:8080/file/download', data)
         .then(response => response.blob())
         .then(blob => {
             const url = URL.createObjectURL(blob)
@@ -146,10 +150,16 @@
     
     const deleteFiles = () => {
         const prefixPath = getCurrentPath()
-        data.body = JSON.stringify({
-            pathList: fileTable.value.getSelectionRows().map(item => prefixPath + item.filename)
+        fetch(DELETE_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                pathList: fileTable.value.getSelectionRows().map(item => prefixPath + item.filename)
+            })
         })
-        fetch('http://localhost:8080/file/delete', data)
         .then(response => {return response.json()})
         .then(data => {
             if (data.code == 200) {
@@ -180,11 +190,17 @@
             inputErrorMessage: '不能为空',
         })
         .then(({ value }) => {
-            data.body = JSON.stringify({
-                src: prefixPath + fileName,
-                dst: prefixPath + value,
+            fetch(RENAME_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    src: prefixPath + fileName,
+                    dst: prefixPath + value,
+                })
             })
-            fetch('http://localhost:8080/file/rename', data)
             .then(response => {
                 return response.json(); // 解析JSON响应体
             })
@@ -214,10 +230,16 @@
             inputErrorMessage: '不能为空',
         }).then(({ value }) => {
             const prefixPath = getCurrentPath()
-            data.body = JSON.stringify({
-                path: prefixPath + value
+            fetch(CREATE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    path: prefixPath + value
+                })
             })
-            fetch('http://localhost:8080/file/create', data)
             .then(response => {
                 return response.json(); // 解析JSON响应体
             })
@@ -261,8 +283,14 @@
     }
 
     const jumpToUrl = (path) => {
-        data.body = JSON.stringify({path: path})
-        fetch('http://localhost:8080/file/list', data)
+        fetch(LIST_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({path: path})
+        })
         .then(response => {return response.json();})
         .then(data => {
             if (data.code == 200) {

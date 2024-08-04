@@ -57,7 +57,10 @@
 import { reactive } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
-import homeIcon from '@/assets/pillow.png'
+
+const GET_CODE_URL = 'http://localhost:25567/user/get_code'
+const RESET_PASSWORD_URL = 'http://localhost:25567/user/reset_password'
+
 
 const sms = reactive({
     disabled: false,
@@ -86,7 +89,7 @@ const form = reactive({
 })
 
 const getCode = () => {
-    fetch('http://127.0.0.1:8080/user/get_code', {
+    fetch(GET_CODE_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: form.email})
@@ -117,7 +120,7 @@ const onSubmit = () => {
         })
     };
 
-    fetch('http://127.0.0.1:8080/user/reset_password', data)
+    fetch(RESET_PASSWORD_URL, data)
     .then(response => response.json())
     .then(data => {
         if (data.code == 200) {
