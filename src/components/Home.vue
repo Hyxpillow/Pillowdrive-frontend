@@ -309,6 +309,7 @@
             }
             })
         .catch(error => {
+            location.href = "/login"
             ElMessageBox.alert("后端未启用")
             console.log(error)
         });
