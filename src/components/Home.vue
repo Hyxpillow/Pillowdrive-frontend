@@ -71,12 +71,12 @@
     import { ref, onMounted, reactive } from 'vue'
     import { ElMessageBox } from 'element-plus'
 
-    const UPLOAD_URL = 'http://localhost:25567/file/upload'
-    const DOWNLOAD_URL = 'http://localhost:25567/file/download'
-    const DELETE_URL = 'http://localhost:25567/file/delete'
-    const RENAME_URL = 'http://localhost:25567/file/rename'
-    const CREATE_URL = 'http://localhost:25567/file/create'
-    const LIST_URL = 'http://localhost:25567/file/list'
+    const UPLOAD_URL = 'http://123.249.127.238:25567/file/upload'
+    const DOWNLOAD_URL = 'http://123.249.127.238:25567/file/download'
+    const DELETE_URL = 'http://123.249.127.238:25567/file/delete'
+    const RENAME_URL = 'http://123.249.127.238:25567/file/rename'
+    const CREATE_URL = 'http://123.249.127.238:25567/file/create'
+    const LIST_URL = 'http://123.249.127.238:25567/file/list'
 
     var reactiveComponent = reactive({
         allFiles: [],

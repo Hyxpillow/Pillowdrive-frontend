@@ -48,7 +48,7 @@ import { ElMessageBox } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 
 
-const LOGIN_URL = 'http://localhost:25567/user/login'
+const LOGIN_URL = 'http://123.249.127.238:25567/user/login'
 
 
 const form = reactive({

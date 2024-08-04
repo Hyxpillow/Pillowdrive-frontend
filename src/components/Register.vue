@@ -55,8 +55,8 @@ import { reactive } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 
-const GET_CODE_URL = 'http://localhost:25567/user/get_code'
-const REGISTER_URL = 'http://localhost:25567/user/register'
+const GET_CODE_URL = 'http://123.249.127.238:25567/user/get_code'
+const REGISTER_URL = 'http://123.249.127.238:25567/user/register'
 
 
 const sms = reactive({
