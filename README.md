@@ -2,7 +2,7 @@
 
 Pillowdrive 简易网盘采用前后端模式，本项目为前端项目：
 
-项目体验地址：123.249.127.238:25566
+项目体验地址：http://123.249.127.238:25566
 
 前端项目地址：https://github.com/Hyxpillow/pillowdrive-frontend
 
