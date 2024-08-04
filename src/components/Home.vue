@@ -3,7 +3,7 @@
       <el-container>
         <el-header style="display: flex; justify-content: space-between; align-items: center; padding-top: 30px;">
             <div style="display: flex; align-items: center;">
-                <el-image style="width: 80px; height: 80px;" src="`${$pb}assets/pillow.png`" />
+                <el-image style="width: 80px; height: 80px;" src="/pillow.png" />
                 <el-text style="
                     color: #92b4df;
                     font-size: 40px; 
@@ -286,7 +286,7 @@
         });
     }
 
-    function compare(p){ //这是比较函数
+    function compare(p){ 
         return function(m,n){
             var a = m[p];
             var b = n[p];

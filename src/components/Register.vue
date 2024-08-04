@@ -8,7 +8,7 @@
         <div class = "container">
             <div style="width: 350px;padding: 50px 30px;background-color: white;border-radius: 5px;">
                 <div style="display: flex;align-items: center;font-size: 20px;margin-bottom: 20px;">
-                  <el-image style="width: 40px;" src="`${$pb}assets/pillow.png`" />
+                  <el-image style="width: 40px;" src="/pillow.png" />
                   <el-text style="color: #92b4df;font-size: 25px; font-weight:700;margin-left: 10px;">PillowDrive</el-text>
                 </div>
                 <el-form :model="form" label-width="auto" style="max-width: 600px">
