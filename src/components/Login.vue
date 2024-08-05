@@ -52,8 +52,8 @@ const LOGIN_URL = 'http://123.249.127.238:25567/user/login'
 
 
 const form = reactive({
-    email: '',
-    password: ''
+    email: 'hyxpillow@outlook.com',
+    password: 'hyx123456'
 })
 const onSubmit = () => {
     fetch(LOGIN_URL, {

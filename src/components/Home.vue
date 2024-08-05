@@ -92,6 +92,11 @@
         fileInput.value.click()
     }
     const handleFileChange = () => {
+        if (!fileInput.value.files.length) return;  // 如果用户没有文件要上传，直接返回
+        if (fileInput.value.files[0].size / 1024 / 1024 >= 50) {
+            ElMessageBox.alert("上传文件的大小不能超过50M");
+            return;
+        };
         const formData = new FormData();
         formData.append('file', fileInput.value.files[0]);
         formData.append('path', getCurrentPath()); // 添加路径字段
@@ -309,7 +314,6 @@
             }
             })
         .catch(error => {
-            location.href = "/login"
             ElMessageBox.alert("后端未启用")
             console.log(error)
         });
